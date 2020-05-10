@@ -1,12 +1,13 @@
 'use strict';
 
-module.exports.getRandomInt = (min, max) => {
+const getRandomInt = (min, max) => {
+  const ADDITIONAL_NUM = 1;
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + ADDITIONAL_NUM)) + min;
 };
 
-module.exports.getPictureFileName = (num) => {
+const getPictureFileName = (num) => {
   let path;
 
   if (num > 10) {
@@ -18,11 +19,19 @@ module.exports.getPictureFileName = (num) => {
   return path;
 };
 
-module.exports.shuffle = (someArray) => {
-  for (let i = someArray.length - 1; i > 0; i--) {
+const shuffle = (someArray) => {
+  const someArrayEnd = someArray.length - 1;
+
+  for (let i = someArrayEnd; i > 0; i--) {
     const randomPosition = Math.floor(Math.random() * i);
     [someArray[i], someArray[randomPosition]] = [someArray[randomPosition], someArray[i]];
   }
 
   return someArray;
+};
+
+module.exports = {
+  getRandomInt,
+  getPictureFileName,
+  shuffle
 };

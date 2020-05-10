@@ -1,6 +1,7 @@
 'use strict';
 
 const DEFAULT_COUNT = 1;
+const MAX_ADS = 1000;
 const FILE_NAME = `mocks.json`;
 
 const TITLES = [
@@ -47,7 +48,6 @@ const OfferType = {
   sale: `sale`,
 };
 
-
 const SumRestrict = {
   min: 1000,
   max: 100000,
@@ -62,7 +62,7 @@ const {
   getRandomInt,
   shuffle,
   getPictureFileName
-} = require(`../../utils`);
+} = require(`../../../utils`);
 
 const generateOffers = (count) => (
   Array(count).fill({}).map(() => ({
@@ -84,12 +84,18 @@ module.exports = {
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(countOffer));
 
-    fs.writeFile(FILE_NAME, content, (err) => {
-      if (err) {
-        return console.error(`Can't write data to file...`);
-      }
+    if (args < MAX_ADS) {
+      fs.writeFile(FILE_NAME, content, (err) => {
+        if (err) {
+          return console.error(`Can't write data to file...`);
+        }
 
-      return console.info(`Operation success. File created.`);
-    });
+        return console.info(`Operation success. File created.`);
+      });
+    } else {
+      return console.error(`No more than 1000 ads`);
+    }
+
+    return true;
   }
 };
