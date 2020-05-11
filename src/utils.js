@@ -8,24 +8,20 @@ const getRandomInt = (min, max) => {
 };
 
 const getPictureFileName = (num) => {
-  let path;
-
-  if (num > 10) {
-    path = `item${num}.jpg`;
-  } else {
-    path = `item0${num}.jpg`;
+  if (num < 10) {
+    const numStr = num + ``;
+    num = numStr.padStart(2, `0`);
   }
 
-  return path;
+  return `item${num}.jpg`;
 };
 
 const shuffle = (someArray) => {
-  const someArrayEnd = someArray.length - 1;
+  someArray.forEach((item, index) => {
+    const randomPosition = Math.floor(Math.random() * index);
 
-  for (let i = someArrayEnd; i > 0; i--) {
-    const randomPosition = Math.floor(Math.random() * i);
-    [someArray[i], someArray[randomPosition]] = [someArray[randomPosition], someArray[i]];
-  }
+    [someArray[index], someArray[randomPosition]] = [someArray[randomPosition], someArray[index]];
+  });
 
   return someArray;
 };
