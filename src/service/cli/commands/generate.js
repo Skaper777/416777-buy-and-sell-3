@@ -3,16 +3,16 @@
 const fs = require(`fs`);
 
 const {
-  ExitCode
+  ExitCode,
+  OfferType,
+  SumRestrict,
+  PictureRestrict
 } = require(`../../../constants`);
 
 const {
   TITLES,
   SENTENCES,
-  CATEGORIES,
-  OfferType,
-  SumRestrict,
-  PictureRestrict
+  CATEGORIES
 } = require(`../mocks`);
 
 const {
@@ -43,21 +43,19 @@ module.exports = {
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(countOffer));
 
-    if (args < MAX_ADS) {
-      fs.writeFile(FILE_NAME, content, (err) => {
-        if (err) {
-          console.error(`Can't write data to file...`);
-          process.exit(ExitCode.ERROR);
-        }
-
-        console.info(`Operation success. File created.`);
-        process.exit(ExitCode.SUCCESS);
-      });
-    } else {
+    if (args > MAX_ADS) {
       console.error(`No more than 1000 ads`);
       process.exit(ExitCode.ERROR);
     }
 
-    return true;
+    fs.writeFile(FILE_NAME, content, (err) => {
+      if (err) {
+        console.error(`Can't write data to file...`);
+        process.exit(ExitCode.ERROR);
+      }
+
+      console.info(`Operation success. File created.`);
+      process.exit(ExitCode.SUCCESS);
+    });
   }
 };
