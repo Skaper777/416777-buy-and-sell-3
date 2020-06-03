@@ -8,12 +8,9 @@ const getRandomInt = (min, max) => {
 };
 
 const getPictureFileName = (num) => {
-  if (num < 10) {
-    const numStr = num + ``;
-    num = numStr.padStart(2, `0`);
-  }
+  const numStr = num.toString().padStart(2, `0`);
 
-  return `item${num}.jpg`;
+  return `item${numStr}.jpg`;
 };
 
 const shuffle = (someArray) => {
