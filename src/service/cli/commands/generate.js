@@ -1,10 +1,12 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-const chalk = require(`chalk`);
+
+const logger = require(`../../../logger`);
 
 const {
   ExitCode,
+  cliMessages,
   OfferType,
   SumRestrict,
   PictureRestrict
@@ -28,7 +30,7 @@ const FILE_NAME = `mocks.json`;
 
 const generateOffers = (count) => (
   Array(count).fill({}).map(() => ({
-    category: [CATEGORIES[getRandomInt(0, CATEGORIES.length - 1)]],
+    category: shuffle(CATEGORIES).slice(0, getRandomInt(1, CATEGORIES.length - 1)),
     description: shuffle(SENTENCES).slice(1, 5).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
@@ -45,21 +47,18 @@ module.exports = {
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
     const content = JSON.stringify(generateOffers(countOffer));
 
-    const lengthError = `No more than 1000 ads`;
-    const writeError = `Can't write data to file...`;
-    const successMessage = `Operation success. File created.`;
-
     if (args > MAX_ADS) {
-      console.error(chalk.red(lengthError));
+      console.error(logger.showError(cliMessages.LENGTH_ERROR));
       process.exit(ExitCode.ERROR);
     }
 
     try {
-      await fs.writeFile(FILE_NAME, content);
-      console.info(chalk.green(successMessage));
+      await fs.writeFile(FILE_NAME, content)
+      .then(res => console.log(content));
+      console.info(logger.showSuccess(cliMessages.SUCCESS));
       process.exit(ExitCode.SUCCESS);
     } catch (error) {
-      console.error(chalk.red(writeError));
+      console.error(logger.showError(cliMessages.WRITE_ERROR));
       process.exit(ExitCode.ERROR);
     }
   }
