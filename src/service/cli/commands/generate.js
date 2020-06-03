@@ -6,7 +6,7 @@ const logger = require(`../../../logger`);
 
 const {
   ExitCode,
-  cliMessages,
+  СliMessage,
   OfferType,
   SumRestrict,
   PictureRestrict
@@ -48,17 +48,16 @@ module.exports = {
     const content = JSON.stringify(generateOffers(countOffer));
 
     if (args > MAX_ADS) {
-      console.error(logger.showError(cliMessages.LENGTH_ERROR));
+      console.error(logger.showError(СliMessage.LENGTH_ERROR));
       process.exit(ExitCode.ERROR);
     }
 
     try {
-      await fs.writeFile(FILE_NAME, content)
-      .then(res => console.log(content));
-      console.info(logger.showSuccess(cliMessages.SUCCESS));
+      await fs.writeFile(FILE_NAME, content);
+      console.info(logger.showSuccess(СliMessage.SUCCESS));
       process.exit(ExitCode.SUCCESS);
     } catch (error) {
-      console.error(logger.showError(cliMessages.WRITE_ERROR));
+      console.error(logger.showError(СliMessage.WRITE_ERROR));
       process.exit(ExitCode.ERROR);
     }
   }

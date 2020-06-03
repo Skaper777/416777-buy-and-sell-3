@@ -19,11 +19,11 @@ const PictureRestrict = Object.freeze({
   MAX: 16,
 });
 
-const cliMessages = {
+const СliMessage = Object.freeze({
   LENGTH_ERROR: `No more than 1000 cards`,
   WRITE_ERROR: `Can't write data to file...`,
   SUCCESS: `Operation success. File created.`
-};
+});
 
 const ExitCode = Object.freeze({
   SUCCESS: 0,
@@ -37,6 +37,6 @@ module.exports = {
   OfferType,
   SumRestrict,
   PictureRestrict,
-  cliMessages,
+  СliMessage,
   ExitCode
 };
