@@ -30,10 +30,11 @@ const shuffle = (someArray) => {
 const readContent = async (filePath) => {
   try {
     const content = await fs.readFile(filePath, `utf8`);
-    return content.split(`\n`);
+    const contentArray = content.split(`\n`);
+
+    return contentArray.slice(0, contentArray.length - 1);
   } catch (err) {
-    console.error(logger.showError(err));
-    return [];
+    return console.error(logger.showError(err)); // без ретёрна ругается
   }
 };
 

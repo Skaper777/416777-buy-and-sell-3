@@ -4,16 +4,13 @@ const fs = require(`fs`).promises;
 
 const logger = require(`../../../logger`);
 
-const FILE_SENTENCES_PATH = `./data/sentences.txt`;
-const FILE_TITLES_PATH = `./data/titles.txt`;
-const FILE_CATEGORIES_PATH = `./data/categories.txt`;
-
 const {
   ExitCode,
   СliMessage,
   OfferType,
   SumRestrict,
-  PictureRestrict
+  PictureRestrict,
+  MocksPaths
 } = require(`../../../constants`);
 
 const {
@@ -42,9 +39,9 @@ module.exports = {
   name: `--generate`,
 
   async run(args) {
-    const sentences = await readContent(FILE_SENTENCES_PATH);
-    const titles = await readContent(FILE_TITLES_PATH);
-    const categories = await readContent(FILE_CATEGORIES_PATH);
+    const sentences = await readContent(MocksPaths.FILE_SENTENCES_PATH);
+    const titles = await readContent(MocksPaths.FILE_TITLES_PATH);
+    const categories = await readContent(MocksPaths.FILE_CATEGORIES_PATH);
 
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
