@@ -10,7 +10,7 @@ const {
   OfferType,
   SumRestrict,
   PictureRestrict,
-  MocksPaths
+  MockPath
 } = require(`../../../constants`);
 
 const {
@@ -39,9 +39,9 @@ module.exports = {
   name: `--generate`,
 
   async run(args) {
-    const sentences = await readContent(MocksPaths.FILE_SENTENCES_PATH);
-    const titles = await readContent(MocksPaths.FILE_TITLES_PATH);
-    const categories = await readContent(MocksPaths.FILE_CATEGORIES_PATH);
+    const sentences = await readContent(MockPath.SENTENCES_PATH);
+    const titles = await readContent(MockPath.TITLES_PATH);
+    const categories = await readContent(MockPath.CATEGORIES_PATH);
 
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;

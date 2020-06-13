@@ -34,7 +34,8 @@ const readContent = async (filePath) => {
 
     return contentArray.slice(0, contentArray.length - 1);
   } catch (err) {
-    return console.error(logger.showError(err)); // без ретёрна ругается
+    console.error(logger.showError(err));
+    return false;
   }
 };
 

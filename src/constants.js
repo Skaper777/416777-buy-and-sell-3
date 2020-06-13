@@ -30,10 +30,10 @@ const ExitCode = Object.freeze({
   ERROR: 1
 });
 
-const MocksPaths = {
-  FILE_SENTENCES_PATH: `./data/sentences.txt`,
-  FILE_TITLES_PATH: `./data/titles.txt`,
-  FILE_CATEGORIES_PATH: `./data/categories.txt`
+const MockPath = {
+  SENTENCES_PATH: `./data/sentences.txt`,
+  TITLES_PATH: `./data/titles.txt`,
+  CATEGORIES_PATH: `./data/categories.txt`
 };
 
 module.exports = {
@@ -45,5 +45,5 @@ module.exports = {
   PictureRestrict,
   СliMessage,
   ExitCode,
-  MocksPaths
+  MockPath
 };
