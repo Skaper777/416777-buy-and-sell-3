@@ -1,5 +1,9 @@
 'use strict';
 
+const fs = require(`fs`).promises;
+
+const logger = require(`./logger`);
+
 const getRandomInt = (min, max) => {
   const ADDITIONAL_NUM = 1;
   min = Math.ceil(min);
@@ -23,8 +27,21 @@ const shuffle = (someArray) => {
   return someArray;
 };
 
+const readContent = async (filePath) => {
+  try {
+    const content = await fs.readFile(filePath, `utf8`);
+    const contentArray = content.split(`\n`);
+
+    return contentArray.slice(0, contentArray.length - 1);
+  } catch (err) {
+    console.error(logger.showError(err));
+    return false;
+  }
+};
+
 module.exports = {
   getRandomInt,
   getPictureFileName,
-  shuffle
+  shuffle,
+  readContent
 };
