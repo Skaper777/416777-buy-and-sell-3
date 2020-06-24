@@ -3,20 +3,20 @@
 const chalk = require(`chalk`);
 
 const logger = {
-  showError(text) {
-    return chalk.red(text);
+  showError(text, error) {
+    console.error(chalk.red(text), error ? error : ``);
   },
 
   showSuccess(text) {
-    return chalk.green(text);
+    console.info(chalk.green(text));
   },
 
   showInfo(text) {
-    return chalk.gray(text);
+    console.info(chalk.gray(text));
   },
 
   showVersion(text) {
-    return chalk.blue(text);
+    console.info(chalk.blue(text));
   }
 };
 

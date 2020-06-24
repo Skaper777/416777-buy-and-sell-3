@@ -17,6 +17,6 @@ module.exports = {
         --generate <count>    формирует файл mocks.json
     `;
 
-    console.info(logger.showInfo(infoMessage));
+    logger.showInfo(infoMessage);
   }
 };
