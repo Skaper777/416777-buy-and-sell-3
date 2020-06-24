@@ -55,10 +55,10 @@ module.exports = {
     .listen(port)
     .on(`listening`, (err) => {
       if (err) {
-        console.error(logger.showError(ServerMessage.CREATE_ERROR), err);
+        logger.showError(ServerMessage.CREATE_ERROR, err);
       }
 
-      console.info(logger.showSuccess(ServerMessage.PENDING + port));
+      logger.showSuccess(ServerMessage.PENDING + port);
     });
   }
 };
