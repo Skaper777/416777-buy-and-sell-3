@@ -6,6 +6,8 @@ const TARGET_ARGS_INDEX = 1;
 const USER_ARGV_INDEX = 2;
 
 const FILENAME = `mocks.json`;
+const PUBLIC_DIR = `public`;
+const TEMPLATES_DIR = `templates`;
 
 const OfferType = Object.freeze({
   OFFER: `offer`,
@@ -58,6 +60,8 @@ module.exports = {
   TARGET_ARGS_INDEX,
   USER_ARGV_INDEX,
   FILENAME,
+  PUBLIC_DIR,
+  TEMPLATES_DIR,
   OfferType,
   SumRestrict,
   PictureRestrict,
