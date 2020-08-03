@@ -3,12 +3,12 @@
 const express = require(`express`);
 const path = require(`path`);
 
-const mainRoutes = require(`./routes/main-routes`);
-const myRoutes = require(`./routes/my-routes`);
-const offersRoutes = require(`./routes/offers-routes`);
-const registerRoutes = require(`./routes/register-routes`);
-const loginRoutes = require(`./routes/login-routes`);
-const searchRoutes = require(`./routes/search-routes`);
+const mainRoutes = require(`./routes/main`);
+const myRoutes = require(`./routes/my`);
+const offersRoutes = require(`./routes/offers`);
+const registerRoutes = require(`./routes/register`);
+const loginRoutes = require(`./routes/login`);
+const searchRoutes = require(`./routes/search`);
 
 const {DEFAULT_PORT, PUBLIC_DIR, TEMPLATES_DIR} = require(`../constants`);
 
