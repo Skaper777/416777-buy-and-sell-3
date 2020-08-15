@@ -1,49 +1,34 @@
 'use strict';
 
-const http = require(`http`);
+const express = require(`express`);
 const fs = require(`fs`).promises;
+const app = express();
 
 const {DEFAULT_PORT, FILENAME, HttpCode, ServerMessage} = require(`../../../constants`);
 const logger = require(`../../../logger`);
 
-const sendResponse = (res, statusCode, message) => {
-  const template = `
-    <!Doctype html>
-      <html lang="ru">
-      <head>
-        <title>With love from Node</title>
-      </head>
-      <body>${message}</body>
-    </html>`.trim();
+app.use(express.json());
 
-  res.statusCode = statusCode;
-  res.writeHead(statusCode, {
-    'Content-Type': `text/html; charset=UTF-8`,
-  });
+app.get(`/offers`, async (req, res) => {
+  try {
+    let mocks = [];
 
-  res.end(template);
-};
+    try {
+      const fileContent = await fs.readFile(FILENAME);
+      mocks = JSON.parse(fileContent);
+    } catch (error) {
+      logger.showError(ServerMessage.CREATE_ERROR, error);
+    }
 
-const onClientConnect = async (req, res) => {
-  const notFoundMessageText = `Not found`;
-
-  switch (req.url) {
-    case `/`:
-      try {
-        const fileContent = await fs.readFile(FILENAME);
-        const mocks = JSON.parse(fileContent);
-        const message = mocks.map((post) => `<li>${post.title}</li>`).join(``);
-        sendResponse(res, HttpCode.OK, `<ul>${message}</ul>`);
-      } catch (err) {
-        sendResponse(res, HttpCode.NOT_FOUND, notFoundMessageText);
-      }
-
-      break;
-    default:
-      sendResponse(res, HttpCode.NOT_FOUND, notFoundMessageText);
-      break;
+    res.json(mocks);
+  } catch (error) {
+    res.status(HttpCode.INTERNAL_SERVER_ERROR).send(error);
   }
-};
+});
+
+app.use((req, res) => res
+  .status(HttpCode.NOT_FOUND)
+  .send(`Not found`));
 
 module.exports = {
   name: `--server`,
@@ -51,9 +36,7 @@ module.exports = {
     const [customPort] = args;
     const port = Number.parseInt(customPort, 10) || DEFAULT_PORT;
 
-    http.createServer(onClientConnect)
-    .listen(port)
-    .on(`listening`, (err) => {
+    app.listen(port, (err) => {
       if (err) {
         logger.showError(ServerMessage.CREATE_ERROR, err);
       }
