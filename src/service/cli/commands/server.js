@@ -35,6 +35,7 @@ module.exports = {
     app.listen(port, (err) => {
       if (err) {
         logger.showError(ServerMessage.CREATE_ERROR, err);
+        return;
       }
 
       logger.showSuccess(ServerMessage.PENDING + port);
