@@ -10,19 +10,15 @@ const logger = require(`../../../logger`);
 app.use(express.json());
 
 app.get(`/offers`, async (req, res) => {
-  try {
-    let mocks = [];
+  let mocks = [];
 
-    try {
-      const fileContent = await fs.readFile(FILENAME);
-      mocks = JSON.parse(fileContent);
-    } catch (error) {
-      logger.showError(ServerMessage.CREATE_ERROR, error);
-    }
+  try {
+    const fileContent = await fs.readFile(FILENAME);
+    mocks = JSON.parse(fileContent);
 
     res.json(mocks);
   } catch (error) {
-    res.status(HttpCode.INTERNAL_SERVER_ERROR).send(error);
+    res.status(HttpCode.INTERNAL_SERVER_ERROR).send(mocks);
   }
 });
 
