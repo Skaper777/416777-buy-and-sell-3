@@ -1,6 +1,6 @@
 'use strict';
 
-class SearchService {
+class SearchModel {
   constructor(offers) {
     this._offers = offers;
   }
@@ -12,4 +12,4 @@ class SearchService {
 
 }
 
-module.exports = SearchService;
+module.exports = SearchModel;

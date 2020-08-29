@@ -2,7 +2,7 @@
 
 const express = require(`express`);
 const app = express();
-const routes = require(`../../api`);
+const routes = require(`../server/routes`);
 
 const {DEFAULT_PORT, HttpCode, ServerMessage, API_PREFIX} = require(`../../../constants`);
 const logger = require(`../../../logger`);

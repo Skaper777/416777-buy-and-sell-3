@@ -1,6 +1,6 @@
 'use strict';
 
-class CategoryService {
+class CategoryModel {
   constructor(offers) {
     this._offers = offers;
   }
@@ -15,4 +15,4 @@ class CategoryService {
   }
 }
 
-module.exports = CategoryService;
+module.exports = CategoryModel;
