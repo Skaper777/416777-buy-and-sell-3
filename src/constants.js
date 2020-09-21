@@ -18,6 +18,12 @@ const OfferType = Object.freeze({
   SALE: `sale`,
 });
 
+const ApiRoutes = Object.freeze({
+  OFFERS: `/api/offers`,
+  CATEGORIES: `/api/categories`,
+  SEARCH: `/api/search`,
+});
+
 const SumRestrict = Object.freeze({
   MIN: 1000,
   MAX: 100000,
@@ -75,6 +81,7 @@ module.exports = {
   TEMPLATES_DIR,
   API_PREFIX,
   OfferType,
+  ApiRoutes,
   SumRestrict,
   PictureRestrict,
   СliMessage,

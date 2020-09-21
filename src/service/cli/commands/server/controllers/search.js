@@ -1,8 +1,8 @@
 'use strict';
 
-const {HttpCode} = require(`../../../../constants`);
+const {HttpCode} = require(`../../../../../constants`);
 
-const {SearchModel} = require(`../models`);
+const SearchModel = require(`../models/search`);
 const getMockData = require(`../lib/get-mock-data`);
 
 let searchService;
