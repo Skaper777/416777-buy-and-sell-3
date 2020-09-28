@@ -1,23 +1,16 @@
 'use strict';
 
-const chalk = require(`chalk`);
+const {LOGS_DIR} = require(`./constants`);
 
-const logger = {
-  showError(text, error) {
-    console.error(chalk.red(text), error ? error : ``);
-  },
+const logger = require(`pino`)({
+  name: `pino-and-express`,
+  prettyPrint: true,
+  level: process.env.LOG_LEVEL || `info`
+}, LOGS_DIR);
 
-  showSuccess(text) {
-    console.info(chalk.green(text));
-  },
-
-  showInfo(text) {
-    console.info(chalk.gray(text));
-  },
-
-  showVersion(text) {
-    console.info(chalk.blue(text));
+module.exports = {
+  logger,
+  getLogger(options = {}) {
+    return logger.child(options);
   }
 };
-
-module.exports = logger;

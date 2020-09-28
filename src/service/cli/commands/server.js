@@ -3,7 +3,8 @@
 const server = require(`./server/index`);
 
 const {DEFAULT_PORT, ServerMessage} = require(`../../../constants`);
-const logger = require(`../../../logger`);
+const {getLogger} = require(`../../../logger`);
+const logger = getLogger();
 
 module.exports = {
   name: `--server`,
@@ -13,11 +14,11 @@ module.exports = {
 
     server.listen(port, (err) => {
       if (err) {
-        logger.showError(ServerMessage.CREATE_ERROR, err);
+        logger.error(ServerMessage.CREATE_ERROR);
         return;
       }
 
-      logger.showSuccess(ServerMessage.PENDING + port);
+      logger.info(ServerMessage.PENDING + port);
     });
   }
 };

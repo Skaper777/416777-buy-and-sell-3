@@ -10,6 +10,7 @@ const MAX_ID_LENGTH = 5;
 const MAX_COMMENTS = 6;
 const FILENAME = `mocks.json`;
 const PUBLIC_DIR = `public`;
+const LOGS_DIR = `./src/service/logs/logs.log`;
 const TEMPLATES_DIR = `templates`;
 const API_PREFIX = `/api`;
 
@@ -41,8 +42,15 @@ const СliMessage = Object.freeze({
 });
 
 const ServerMessage = Object.freeze({
-  CREATE_ERROR: `Ошибка при создании сервера`,
-  PENDING: `Ожидаю соединения на `
+  CREATE_ERROR: `Can't start server`,
+  PENDING: `Server started at port `
+});
+
+const LoggerMessage = Object.freeze({
+  ROUTE: `Route is `,
+  STATUS_CODE: `Status code is `,
+  NOT_FOUND: `Error, not found`,
+  BAD_REQUEST: `Error, bad request`
 });
 
 const ExitCode = Object.freeze({
@@ -78,6 +86,7 @@ module.exports = {
   MAX_ID_LENGTH,
   MAX_COMMENTS,
   PUBLIC_DIR,
+  LOGS_DIR,
   TEMPLATES_DIR,
   API_PREFIX,
   OfferType,
@@ -86,6 +95,7 @@ module.exports = {
   PictureRestrict,
   СliMessage,
   ServerMessage,
+  LoggerMessage,
   ExitCode,
   MockPath,
   HttpCode

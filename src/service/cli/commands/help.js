@@ -1,6 +1,7 @@
 'use strict';
 
-const logger = require(`../../../logger`);
+const {getLogger} = require(`../../../logger`);
+const logger = getLogger();
 
 module.exports = {
   name: `--help`,
@@ -18,6 +19,6 @@ module.exports = {
         --server <port>       запускает сервер на указанном порту
     `;
 
-    logger.showInfo(infoMessage);
+    logger.info(infoMessage);
   }
 };

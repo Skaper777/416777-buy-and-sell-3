@@ -1,24 +1,22 @@
 'use strict';
 
-const {HttpCode} = require(`../../../../../constants`);
+const {HttpCode, LoggerMessage} = require(`../../../../../constants`);
 const getMockData = require(`../lib/get-mock-data`);
 
 const OfferModel = require(`../models/offer`);
 const CommentModel = require(`../models/comment`);
 
-let offerService;
-let commentService;
-
-(async () => {
-  const mockData = await getMockData();
-  offerService = new OfferModel(mockData);
-  commentService = new CommentModel(mockData);
-})();
+const {getLogger} = require(`../../../../../logger`);
+const logger = getLogger();
 
 const getComments = async (req, res) => {
   try {
+    const mockData = await getMockData();
+    const offerService = new OfferModel(mockData);
+    const commentService = new CommentModel(mockData);
+
     const {offerId} = req.params;
-    const offer = offerService.findOne(offerId);
+    const offer = await offerService.findOne(offerId);
 
     if (!offer) {
       return res.status(HttpCode.NOT_FOUND)
@@ -27,9 +25,11 @@ const getComments = async (req, res) => {
 
     const comments = await commentService.findAll(offer);
 
+    logger.debug(`${LoggerMessage.ROUTE}get comments`);
     return res.status(HttpCode.OK)
       .json(comments);
   } catch (error) {
+    logger.error(LoggerMessage.NOT_FOUND);
     return res.status(HttpCode.NOT_FOUND)
     .send(`Not found`);
   }
@@ -37,8 +37,12 @@ const getComments = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   try {
+    const mockData = await getMockData();
+    const offerService = new OfferModel(mockData);
+    const commentService = new CommentModel(mockData);
+
     const {offerId} = req.params;
-    const offer = offerService.findOne(offerId);
+    const offer = await offerService.findOne(offerId);
 
     if (!offer) {
       return res.status(HttpCode.NOT_FOUND)
@@ -49,13 +53,16 @@ const deleteComment = async (req, res) => {
     const deletedComment = await commentService.drop(offer, commentId);
 
     if (!deletedComment) {
+      logger.error(LoggerMessage.NOT_FOUND);
       return res.status(HttpCode.NOT_FOUND)
         .send(`Not found`);
     }
 
+    logger.debug(`${LoggerMessage.ROUTE}delete comments`);
     return res.status(HttpCode.OK)
       .json(deletedComment);
   } catch (error) {
+    logger.error(LoggerMessage.NOT_FOUND);
     return res.status(HttpCode.NOT_FOUND)
     .send(`Not found`);
   }
@@ -63,19 +70,26 @@ const deleteComment = async (req, res) => {
 
 const postComment = async (req, res) => {
   try {
+    const mockData = await getMockData();
+    const offerService = new OfferModel(mockData);
+    const commentService = new CommentModel(mockData);
+
     const {offerId} = req.params;
-    const offer = offerService.findOne(offerId);
+    const offer = await offerService.findOne(offerId);
 
     if (!offer) {
+      logger.error(LoggerMessage.NOT_FOUND);
       return res.status(HttpCode.NOT_FOUND)
         .send(`Offer with ${offerId} not found`);
     }
 
-    const comment = commentService.create(offer, req.body);
+    const comment = await commentService.create(offer, req.body);
 
+    logger.debug(`${LoggerMessage.ROUTE}new comments`);
     return res.status(HttpCode.CREATED)
       .json(comment);
   } catch (error) {
+    logger.error(LoggerMessage.NOT_FOUND);
     return res.status(HttpCode.NOT_FOUND)
     .send(`Not found`);
   }
