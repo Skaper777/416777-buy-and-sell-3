@@ -16,6 +16,3 @@ build/
 
 # Моковые данные
 mocks.json
-
-# Логи
-src/service/logs

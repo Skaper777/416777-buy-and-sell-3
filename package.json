@@ -10,7 +10,7 @@
     "start": "cross-env LOG_LEVEL=error node ./src/service/service.js | pino-pretty",
     "start::debug": "cross-env LOG_LEVEL=debug node ./src/service/service.js | pino-pretty",
     "server": "nodemon ./src/service/service.js --server 3000",
-    "server::debug": "cross-env LOG_LEVEL=debug nodemon ./src/service/service.js --server 3000",
+    "server::debug": "cross-env LOG_LEVEL=debug nodemon ./src/service/service.js --server 3000 | pino-pretty",
     "start-front-server": "node ./src/express/index.js"
   },
   "repository": {
