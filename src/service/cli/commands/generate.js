@@ -1,7 +1,8 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-const logger = require(`../../../logger`);
+const {getLogger} = require(`../../../logger`);
+const logger = getLogger();
 const {nanoid} = require(`nanoid`);
 
 const {
@@ -69,7 +70,7 @@ module.exports = {
       await fs.writeFile(FILENAME, content);
       logger.info(СliMessage.SUCCESS);
       process.exit(ExitCode.SUCCESS);
-    } catch (error) {
+    } catch (err) {
       logger.error(СliMessage.WRITE_ERROR);
       process.exit(ExitCode.ERROR);
     }

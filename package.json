@@ -4,13 +4,14 @@
   "description": "Куплю. Продам",
   "main": "./src/service/service.js",
   "scripts": {
-    "test": "npm run eslint && npm run test::rest",
+    "generate": "node ./src/service/service.js --generate 5",
+    "test": "npm run eslint && npm run generate && npm run test::rest",
     "test::rest": "jest",
     "eslint": "eslint --ext .js src/",
     "start": "cross-env LOG_LEVEL=error node ./src/service/service.js | pino-pretty",
     "start::debug": "cross-env LOG_LEVEL=debug node ./src/service/service.js | pino-pretty",
-    "server": "nodemon ./src/service/service.js --server 3000",
-    "server::debug": "cross-env LOG_LEVEL=debug nodemon ./src/service/service.js --server 3000 | pino-pretty",
+    "server": "npm run generate && nodemon ./src/service/service.js --server 3000",
+    "server::debug": "cross-env LOG_LEVEL=debug npm run generate && nodemon ./src/service/service.js --server 3000 | pino-pretty",
     "start-front-server": "node ./src/express/index.js"
   },
   "repository": {
