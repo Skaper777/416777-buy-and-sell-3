@@ -1,7 +1,8 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-const logger = require(`../../../../../logger`);
+const {getLogger} = require(`../../../../../logger`);
+const logger = getLogger();
 const {FILENAME, ServerMessage} = require(`../../../../../constants`);
 
 let data = null;

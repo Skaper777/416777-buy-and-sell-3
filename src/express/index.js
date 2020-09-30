@@ -9,7 +9,8 @@ const offersRoutes = require(`./routes/offers`);
 const registerRoutes = require(`./routes/register`);
 const loginRoutes = require(`./routes/login`);
 const searchRoutes = require(`./routes/search`);
-const logger = require(`../logger`);
+const {getLogger} = require(`../logger`);
+const logger = getLogger();
 
 const {DEFAULT_PORT, PUBLIC_DIR, TEMPLATES_DIR} = require(`../constants`);
 

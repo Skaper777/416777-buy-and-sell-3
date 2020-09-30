@@ -2,7 +2,8 @@
 
 const fs = require(`fs`).promises;
 
-const logger = require(`./logger`);
+const {getLogger} = require(`./logger`);
+const logger = getLogger();
 
 const getRandomInt = (min, max) => {
   const ADDITIONAL_NUM = 1;
