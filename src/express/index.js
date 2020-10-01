@@ -9,6 +9,8 @@ const offersRoutes = require(`./routes/offers`);
 const registerRoutes = require(`./routes/register`);
 const loginRoutes = require(`./routes/login`);
 const searchRoutes = require(`./routes/search`);
+const {getLogger} = require(`../logger`);
+const logger = getLogger();
 
 const {DEFAULT_PORT, PUBLIC_DIR, TEMPLATES_DIR} = require(`../constants`);
 
@@ -26,5 +28,5 @@ app.set(`views`, path.resolve(__dirname, TEMPLATES_DIR));
 app.set(`view engine`, `pug`);
 
 app.listen(DEFAULT_PORT, () => {
-  console.info(`Сервер запущен на ${DEFAULT_PORT} порту`);
+  logger.info(`Сервер запущен на ${DEFAULT_PORT} порту`);
 });

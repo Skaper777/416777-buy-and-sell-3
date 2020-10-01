@@ -1,7 +1,8 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-const logger = require(`../../../logger`);
+const {getLogger} = require(`../../../logger`);
+const logger = getLogger();
 const {nanoid} = require(`nanoid`);
 
 const {
@@ -61,16 +62,16 @@ module.exports = {
     const content = JSON.stringify(generateOffers(countOffer, titles, categories, sentences, comments));
 
     if (args > MAX_ADS) {
-      logger.showError(СliMessage.LENGTH_ERROR);
+      logger.error(СliMessage.LENGTH_ERROR);
       process.exit(ExitCode.ERROR);
     }
 
     try {
       await fs.writeFile(FILENAME, content);
-      logger.showSuccess(СliMessage.SUCCESS);
+      logger.info(СliMessage.SUCCESS);
       process.exit(ExitCode.SUCCESS);
-    } catch (error) {
-      logger.showError(СliMessage.WRITE_ERROR);
+    } catch (err) {
+      logger.error(СliMessage.WRITE_ERROR);
       process.exit(ExitCode.ERROR);
     }
   }

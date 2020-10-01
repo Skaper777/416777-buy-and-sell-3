@@ -1,23 +1,22 @@
 'use strict';
 
-const chalk = require(`chalk`);
+const fs = require(`fs`);
+const {resolve} = require(`path`);
+const {LOGS_DIR} = require(`./constants`);
 
-const logger = {
-  showError(text, error) {
-    console.error(chalk.red(text), error ? error : ``);
-  },
+if (!fs.existsSync(resolve(__dirname, `service/logs`))) {
+  fs.mkdirSync(resolve(__dirname, `service/logs`));
+}
 
-  showSuccess(text) {
-    console.info(chalk.green(text));
-  },
+const logger = require(`pino`)({
+  name: `pino-and-express`,
+  prettyPrint: true,
+  level: process.env.LOG_LEVEL || `info`
+}, LOGS_DIR);
 
-  showInfo(text) {
-    console.info(chalk.gray(text));
-  },
-
-  showVersion(text) {
-    console.info(chalk.blue(text));
+module.exports = {
+  logger,
+  getLogger(options = {}) {
+    return logger.child(options);
   }
 };
-
-module.exports = logger;

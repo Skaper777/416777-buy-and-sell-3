@@ -1,6 +1,7 @@
 'use strict';
 
-const logger = require(`../../../logger`);
+const {getLogger} = require(`../../../logger`);
+const logger = getLogger();
 
 module.exports = {
   name: `--help`,
@@ -15,8 +16,9 @@ module.exports = {
         --version:            выводит номер версии
         --help:               печатает этот текст
         --generate <count>    формирует файл mocks.json
+        --server <port>       запускает сервер на указанном порту
     `;
 
-    logger.showInfo(infoMessage);
+    logger.info(infoMessage);
   }
 };

@@ -2,7 +2,8 @@
 
 const fs = require(`fs`).promises;
 
-const logger = require(`./logger`);
+const {getLogger} = require(`./logger`);
+const logger = getLogger();
 
 const getRandomInt = (min, max) => {
   const ADDITIONAL_NUM = 1;
@@ -34,7 +35,7 @@ const readContent = async (filePath) => {
 
     return contentArray.slice(0, contentArray.length - 1);
   } catch (err) {
-    console.error(logger.showError(err));
+    logger.error(err);
     return false;
   }
 };
