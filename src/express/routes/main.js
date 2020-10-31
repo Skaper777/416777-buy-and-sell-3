@@ -1,14 +1,9 @@
 'use strict';
 
 const {Router} = require(`express`);
-const api = require(`../api`).getApi();
 const mainRouter = new Router();
+const {getMainPage} = require(`../controllers/main`);
 
-mainRouter.get(`/`, async (req, res) => {
-  const offers = await api.getOffers();
-
-  console.log(offers);
-  res.render(`main.pug`, {offers});
-});
+mainRouter.get(`/`, getMainPage);
 
 module.exports = mainRouter;

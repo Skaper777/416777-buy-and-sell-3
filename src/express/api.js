@@ -9,7 +9,7 @@ const logger = getLogger();
 class API {
   constructor(baseUrl, timeout) {
     this._http = axios.create({
-      baseUrl,
+      baseURL: baseUrl,
       timeout
     });
   }
@@ -33,14 +33,14 @@ class API {
   }
 
   search(query) {
-    return this._load(`search`, {params: {query}});
+    return this._load(`/search`, {params: {query}});
   }
 
-  async getCategories() {
-    return this._load(`/category`);
+  getCategories() {
+    return this._load(`/categories`);
   }
 
-  async createOffer(data) {
+  createOffer(data) {
     return this._load(`/offers`, {
       method: `POST`,
       data

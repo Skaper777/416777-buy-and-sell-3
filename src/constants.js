@@ -11,6 +11,7 @@ const MAX_COMMENTS = 6;
 const TIMEOUT = 1000;
 const FILENAME = `mocks.json`;
 const PUBLIC_DIR = `public`;
+const UPLOAD_DIR = `upload`;
 const LOGS_DIR = `./src/service/logs/logs.log`;
 const TEMPLATES_DIR = `templates/pages`;
 const API_PREFIX = `/api`;
@@ -88,6 +89,7 @@ module.exports = {
   MAX_ID_LENGTH,
   MAX_COMMENTS,
   PUBLIC_DIR,
+  UPLOAD_DIR,
   LOGS_DIR,
   TEMPLATES_DIR,
   API_PREFIX,

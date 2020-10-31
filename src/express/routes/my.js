@@ -2,8 +2,9 @@
 
 const {Router} = require(`express`);
 const myRouter = new Router();
+const {getMyTickets, getMyComments} = require(`../controllers/my`);
 
-myRouter.get(`/`, (req, res) => res.render(`my-tickets`));
-myRouter.get(`/comments`, (req, res) => res.render(`comments`));
+myRouter.get(`/`, getMyTickets);
+myRouter.get(`/comments`, getMyComments);
 
 module.exports = myRouter;
