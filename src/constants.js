@@ -8,10 +8,12 @@ const USER_ARGV_INDEX = 2;
 const MAX_ADS = 1000;
 const MAX_ID_LENGTH = 5;
 const MAX_COMMENTS = 6;
+const TIMEOUT = 1000;
 const FILENAME = `mocks.json`;
 const PUBLIC_DIR = `public`;
+const UPLOAD_DIR = `upload`;
 const LOGS_DIR = `./src/service/logs/logs.log`;
-const TEMPLATES_DIR = `templates`;
+const TEMPLATES_DIR = `templates/pages`;
 const API_PREFIX = `/api`;
 
 const OfferType = Object.freeze({
@@ -79,6 +81,7 @@ module.exports = {
   DEFAULT_COMMAND,
   DEFAULT_PORT,
   DEFAULT_COUNT,
+  TIMEOUT,
   TARGET_ARGS_INDEX,
   USER_ARGV_INDEX,
   MAX_ADS,
@@ -86,6 +89,7 @@ module.exports = {
   MAX_ID_LENGTH,
   MAX_COMMENTS,
   PUBLIC_DIR,
+  UPLOAD_DIR,
   LOGS_DIR,
   TEMPLATES_DIR,
   API_PREFIX,

@@ -12,7 +12,7 @@ const searchRoutes = require(`./routes/search`);
 const {getLogger} = require(`../logger`);
 const logger = getLogger();
 
-const {DEFAULT_PORT, PUBLIC_DIR, TEMPLATES_DIR} = require(`../constants`);
+const {DEFAULT_PORT, PUBLIC_DIR, UPLOAD_DIR, TEMPLATES_DIR} = require(`../constants`);
 
 const app = express();
 
@@ -23,6 +23,7 @@ app.use(`/login`, loginRoutes);
 app.use(`/search`, searchRoutes);
 app.use(`/offers`, offersRoutes);
 app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
+app.use(express.static(path.resolve(__dirname, UPLOAD_DIR)));
 
 app.set(`views`, path.resolve(__dirname, TEMPLATES_DIR));
 app.set(`view engine`, `pug`);

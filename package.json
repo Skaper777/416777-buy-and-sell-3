@@ -4,15 +4,15 @@
   "description": "Куплю. Продам",
   "main": "./src/service/service.js",
   "scripts": {
-    "generate": "node ./src/service/service.js --generate 5 | pino-pretty",
+    "generate": "node ./src/service/service.js --generate 5",
     "test": "npm run eslint && npm run generate && npm run test::rest",
     "test::rest": "jest",
     "eslint": "eslint --ext .js src/",
     "start": "cross-env LOG_LEVEL=error node ./src/service/service.js | pino-pretty",
     "start::debug": "cross-env LOG_LEVEL=debug node ./src/service/service.js | pino-pretty",
     "server": "npm run generate && nodemon ./src/service/service.js --server 3000 | pino-pretty",
-    "server::debug": "cross-env LOG_LEVEL=debug npm run generate && nodemon ./src/service/service.js --server 3000 | pino-pretty",
-    "start-front-server": "node ./src/express/index.js | pino-pretty"
+    "server::debug": "cross-env LOG_LEVEL=debug nodemon ./src/service/service.js --server 3000 | pino-pretty",
+    "start-front-server": "nodemon ./src/express/index.js | pino-pretty"
   },
   "repository": {
     "type": "git",
@@ -33,11 +33,13 @@
     "supertest": "4.0.2"
   },
   "dependencies": {
+    "axios": "0.20.0",
     "chalk": "4.0.0",
     "cross-env": "7.0.2",
     "express": "4.17.1",
+    "multer": "1.4.2",
     "nanoid": "3.1.12",
     "pino": "6.6.1",
-    "pug": "3.0.0"
+    "pug": "2.0.4"
   }
 }
