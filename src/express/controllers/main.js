@@ -8,8 +8,7 @@ const getMainPage = async (req, res) => {
     const offers = await api.getOffers();
     const categories = await api.getOffers();
 
-    res.render(`main.pug`, {offers});
-    res.render(`categories.pug`, {categories});
+    res.render(`main.pug`, {offers, categories});
   } catch (error) {
     res.status(HttpCode.BAD_REQUEST).send(error.message);
   }
