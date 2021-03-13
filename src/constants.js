@@ -48,6 +48,12 @@ const ServerMessage = Object.freeze({
   PENDING: `Server started at port `
 });
 
+const DatabaseConnectMessage = Object.freeze({
+  TRY: `Trying to connect to database...`,
+  ERROR: `An error occured: `,
+  SUCCESS: `Connection to database established`
+});
+
 const LoggerMessage = Object.freeze({
   ROUTE: `Route is `,
   STATUS_CODE: `Status code is `,
@@ -99,6 +105,7 @@ module.exports = {
   PictureRestrict,
   СliMessage,
   ServerMessage,
+  DatabaseConnectMessage,
   LoggerMessage,
   ExitCode,
   MockPath,
